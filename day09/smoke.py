@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def read_heightmap():
     heigtmap = []
 
@@ -43,7 +44,7 @@ def count_minima(heightmap):
             if heightmap[i][j+1] > this_value and heightmap[i][j-1] > this_value and heightmap[i+1][j] > this_value and heightmap[i-1][j] > this_value:
                 counter += 1
                 risk_level += (1+this_value)
-    return risk_level
+    return int(risk_level)
 
 
 def find_basin_border(heightmap,max_height):
@@ -52,7 +53,6 @@ def find_basin_border(heightmap,max_height):
 
 
 def basin_size(border_map,checked_map,start_x,start_y):
-
     size = 1
     checked_map[start_x,start_y] = 1
     if border_map[start_x+1,start_y] < 0 and checked_map[start_x+1,start_y] == 0:
@@ -101,6 +101,5 @@ print('ANSWER 1:',count_minima(map_pad))
 
 
 # Part 2
-# task is to find the boundaries of the max value
 map_basin_borders = find_basin_border(map_pad,map_max_height)
 print('ANSWER 2:',all_basin_sizes(map_basin_borders))
